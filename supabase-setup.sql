@@ -261,7 +261,7 @@ ON CONFLICT (id) DO NOTHING;
 -- إضافة قسم تجريبي
 INSERT INTO sections (id, course_id, title, description, order_index)
 VALUES (
-  's1e8f9a0-1234-5678-90ab-cdef12345678',
+  'a1e8f9a0-1234-5678-90ab-cdef12345678',
   'c1e8f9a0-1234-5678-90ab-cdef12345678',
   'مقدمة في التسويق الرقمي',
   'تعرف على أساسيات التسويق الرقمي ومنصات ميتا',
@@ -273,7 +273,7 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO lessons (section_id, title, description, duration, order_index, is_free)
 VALUES
   (
-    's1e8f9a0-1234-5678-90ab-cdef12345678',
+    'a1e8f9a0-1234-5678-90ab-cdef12345678',
     'مرحباً بك في دورة ميتا',
     'نظرة عامة على محتوى الدورة وما ستتعلمه',
     600,
@@ -281,7 +281,7 @@ VALUES
     true
   ),
   (
-    's1e8f9a0-1234-5678-90ab-cdef12345678',
+    'a1e8f9a0-1234-5678-90ab-cdef12345678',
     'ما هو التسويق الرقمي؟',
     'فهم مفهوم التسويق الرقمي وأهميته',
     900,
@@ -289,7 +289,7 @@ VALUES
     true
   ),
   (
-    's1e8f9a0-1234-5678-90ab-cdef12345678',
+    'a1e8f9a0-1234-5678-90ab-cdef12345678',
     'منصات ميتا: فيسبوك وإنستغرام',
     'التعرف على منصات ميتا وإمكانياتها التسويقية',
     1200,
