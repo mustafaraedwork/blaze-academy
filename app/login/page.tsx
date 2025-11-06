@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/contexts/AuthContext'
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react'
 
 export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirectTo') || '/profile'
+  const { signIn } = useAuth()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -27,16 +28,9 @@ export default function LoginPage() {
 
     try {
       console.log('🔐 محاولة تسجيل الدخول...')
-      
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      })
 
-      if (error) {
-        console.error('❌ خطأ في تسجيل الدخول:', error)
-        throw error
-      }
+      // استخدام signIn من AuthContext
+      await signIn(formData.email, formData.password)
 
       console.log('✅ تم تسجيل الدخول بنجاح!')
       console.log('📍 التوجيه إلى:', redirectTo)
@@ -44,10 +38,12 @@ export default function LoginPage() {
       // التوجيه فوراً
       router.push(redirectTo)
       router.refresh()
-      
+
     } catch (err: any) {
       console.error('❌ خطأ:', err)
       setError(err.message || 'البريد الإلكتروني أو كلمة المرور غير صحيحة')
+    } finally {
+      // إيقاف التحميل في جميع الحالات بعد انتهاء العملية
       setLoading(false)
     }
   }
