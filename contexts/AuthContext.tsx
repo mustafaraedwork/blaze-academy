@@ -61,24 +61,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (error) throw error;
 
-      // Create profile in profiles table
-      if (data.user) {
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert([
-            {
-              id: data.user.id,
-              name: name,
-              email: email,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString(),
-            },
-          ]);
+      // Profile will be created automatically by database trigger
+      // لن نحتاج لإنشاء profile يدوياً، الـ trigger سيفعل ذلك تلقائياً
 
-        if (profileError) {
-          console.error('Error creating profile:', profileError);
-        }
-      }
     } catch (error: any) {
       console.error('Error signing up:', error);
       throw new Error(error.message || 'حدث خطأ أثناء التسجيل');
