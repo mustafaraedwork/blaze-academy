@@ -116,10 +116,20 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 2. اضغط على **"New Query"** (استعلام جديد)
 
 #### ج) نفذ سكريبت قاعدة البيانات:
+
+**⚠️ اختر السكريبت المناسب:**
+
+**إذا كانت هذه أول مرة (لا توجد جداول):**
 1. افتح ملف `supabase-setup.sql` من مجلد المشروع
-2. **انسخ كل محتوى الملف**
-3. الصقه في SQL Editor
-4. اضغط **"Run"** أو اضغط `Ctrl+Enter` (على Windows) أو `Cmd+Enter` (على Mac)
+
+**إذا حصلت على خطأ "already exists" (الجداول موجودة بالفعل):**
+1. افتح ملف `supabase-reset.sql` بدلاً من ذلك
+2. ⚠️ **تحذير:** هذا سيحذف جميع البيانات الموجودة ويعيد الإنشاء!
+
+**الخطوات:**
+1. **انسخ كل محتوى الملف** المناسب
+2. الصقه في SQL Editor
+3. اضغط **"Run"** أو اضغط `Ctrl+Enter` (على Windows) أو `Cmd+Enter` (على Mac)
 
 **انتظر حتى ترى:** ✅ Success. No rows returned
 
@@ -223,6 +233,22 @@ http://localhost:3000
 **الحل:** لم يتم تثبيت Git
 - حمل Git من [git-scm.com](https://git-scm.com)
 - أعد تشغيل Terminal بعد التثبيت
+
+---
+
+### ❌ المشكلة: "policy already exists" أو "table already exists" في Supabase
+**السبب:** تم تنفيذ السكريبت مسبقاً أو الجداول موجودة
+
+**الحل:**
+1. استخدم ملف `supabase-reset.sql` بدلاً من `supabase-setup.sql`
+2. افتح Supabase Dashboard → SQL Editor
+3. انسخ محتوى `supabase-reset.sql` والصقه
+4. اضغط **"Run"**
+
+⚠️ **ملاحظة:** `supabase-reset.sql` سيحذف جميع البيانات الموجودة ويعيد إنشاء الجداول من الصفر!
+
+**بديل (إذا كنت تريد الاحتفاظ بالبيانات):**
+- يمكنك تجاهل الخطأ إذا كانت الجداول موجودة بالفعل وتعمل بشكل صحيح
 
 ---
 
